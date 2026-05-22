@@ -12,17 +12,18 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;font-size:15px}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;font-size:15px;padding-top:52px;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,242,237,0.92);backdrop-filter:blur(8px);border-bottom:0.5px solid var(--border);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:52px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,242,237,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:0.5px solid var(--border);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:52px}
 .nav-brand{font-family:'DM Serif Display',serif;font-size:18px;letter-spacing:0.02em;color:var(--ink)}
-.nav-links{display:flex;gap:1.5rem}
+.nav-links{display:flex;gap:1.5rem;align-items:center;}
 .nav-links a{font-size:12px;color:var(--ink-light);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
 .nav-links a:hover{color:var(--accent)}
+.nav-links .nav-link-ext {color: var(--accent); font-weight: 500;}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:6rem 3rem 4rem;position:relative;overflow:hidden}
+.hero{min-height:calc(100vh - 52px);display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-40%;right:-20%;width:700px;height:700px;border-radius:50%;border:0.5px solid rgba(0,0,0,0.06);pointer-events:none}
 .hero::after{content:'';position:absolute;top:-20%;right:-5%;width:400px;height:400px;border-radius:50%;border:0.5px solid rgba(0,0,0,0.08);pointer-events:none}
 .hero-eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards}
@@ -37,7 +38,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,242,237,
 .scroll-line{width:32px;height:0.5px;background:var(--ink-light)}
 
 /* SECTIONS */
-section{padding:5rem 3rem;border-top:0.5px solid var(--border)}
+section{padding:7rem 3rem;border-top:0.5px solid var(--border)}
 .sec-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;display:flex;align-items:center;gap:10px}
 .sec-label::after{content:'';flex:1;height:0.5px;background:var(--border)}
 .sec-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,42px);line-height:1.15;margin-bottom:1.5rem;color:var(--ink)}
@@ -131,26 +132,31 @@ section{padding:5rem 3rem;border-top:0.5px solid var(--border)}
 .contact-row{display:flex;gap:1.5rem;margin-top:2rem;flex-wrap:wrap}
 .contact-item{padding:0.75rem 1.25rem;border:0.5px solid var(--border);font-size:13px;color:var(--ink-mid)}
 .contact-item strong{color:var(--ink);font-weight:500}
+.contact-item a:hover {color: var(--accent) !important;}
 
 /* FOOTER */
-footer{padding:2rem 3rem;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+footer{padding:2rem 3rem;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
 footer .f-brand{font-family:'DM Serif Display',serif;font-size:16px}
+footer .f-links a:hover {color: var(--accent) !important;}
 footer .f-note{font-size:11px;color:var(--ink-light)}
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
 .reveal{opacity:0;transform:translateY(16px);transition:opacity 0.7s ease,transform 0.7s ease}
-.reveal.visible{opacity:1;transform:none}
+.reveal.active{opacity:1;transform:none} /* Fixed JS event tracking identifier */
+
+@media(max-width:860px){
+  nav .nav-links {display: none !important;}
+}
 
 @media(max-width:700px){
   nav{padding:0 1.25rem}
-  .nav-links{display:none}
-  .hero{padding:5rem 1.25rem 3rem}
-  section{padding:3rem 1.25rem}
+  .hero{padding:4rem 1.25rem 2rem}
+  section{padding:4rem 1.25rem}
   .two-col,.two-col-wide,.problem-grid,.market-stats,.diff-grid,.vision-pillars{grid-template-columns:1fr}
   .roadmap::before{left:10px}
   .phase{padding-left:2rem}
   .phase-dot{left:4px}
-  footer{flex-direction:column;gap:0.5rem;text-align:center}
+  footer{flex-direction:column;gap:1rem;text-align:center}
 }

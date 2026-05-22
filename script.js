@@ -1,17 +1,19 @@
 /**
- * Cepheus Website Interactions
- * Core Functionality: Scroll-triggered visibility updates (Reveal Animations)
+ * Cepheus Confidential Site Interactions
+ * Performance Optimized Animation Framework
  */
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active'); // Matches design token class exactly
+      }
+    });
+  }, { 
+    threshold: 0.15 
   });
-}, { 
-  threshold: 0.1 
-});
 
-// Select and link observer tracking to all layout elements containing the '.reveal' class
-document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  // Target and track all viewport-bound components
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+});
